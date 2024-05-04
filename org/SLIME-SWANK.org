@@ -11,16 +11,27 @@ SLIME.  На локальной машине мы запускаем Emacs и г
 ** Настройка образа Lisp на удаленном лисп-сервере
 
 *** Запуск командного интерпретатора на удаленном сервере
-$ssh namatv@mnasoft-pi
+#+begin_src sh
+  ssh namatv@mnasoft-pi
+#+end_src
 
-***** Запуск screen
-$screen -R
+*** Запуск screen
+#+begin_src sh
+  screen -R
+#+end_src
 
-**** Запуск лисп (ccl)
-$ccl
+*** Запуск лисп (ccl)
+#+begin_src sh
+  ccl
+#+end_src
 
-******* Запуск серверной части SWANK
-LISP> (require 'asdf) (asdf:oos 'asdf:load-op 'swank) (setf swank:*use-dedicated-output-stream* nil) (swank:create-server :port 4005  :dont-close t )
+**** Запуск серверной части SWANK
+#+begin_src lisp
+  (require 'asdf)
+  (asdf:oos 'asdf:load-op 'swank)
+  (setf swank:*use-dedicated-output-stream* nil)
+  (swank:create-server :port 4005  :dont-close t)
+#+end_src
 
 *** Выход из screen
 C-a d
@@ -28,14 +39,18 @@ C-a d
 *** Выход из интерпретатора команд
 $C-d
 
-**** Машина с Emacs
-****** Создание тоннеля
-$ssh -2 -N -f -L 4005:localhost:4005 namatv@mnasoft-pi
+** Машина с Emacs
+*** Создание тоннеля
+#+begin_src sh
+  ssh -2 -N -f -L 4005:localhost:4005 namatv@mnasoft-pi
+#+end_src
 
-******* Запуск emacs
-$emacs
+*** Запуск emacs
+#+begin_src sh
+  emacs
+#+end_src
 
-******* Подключение к удаленному серверу
-M-x slime-connect
-127.0.0.1
-4005
+**** Подключение к удаленному серверу
+#+begin_src elisp
+  (slime-connect "localhost" 4005)
+#+end_src
