@@ -1,3 +1,5 @@
 #!/bin/bash
 #
-slynk-start-server & sleep 5 ; emacs &
+emacs &
+sbcl --dynamic-space-size 16384  --load "/usr/local/bin/slynk-start-server.lisp"
+

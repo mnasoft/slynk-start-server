@@ -1,0 +1,3 @@
+#!/bin/bash
+#
+kill $(ps | grep /usr/local/bin/sbcl| awk '{print $1}')
