@@ -1,5 +1,21 @@
 #!/bin/bash
 #
+# emacs &
+# slynk-start-server
+
+# Запускаем Emacs в фоновом режиме
 emacs &
-sbcl --dynamic-space-size 16384  --load "/usr/local/bin/slynk-start-server.lisp"
+EMACS_PID=$!
+
+echo "EMACS_PID=${EMACS_PID}"
+
+# Запускаем Slynk
+sbcl --dynamic-space-size 16384  --load /usr/local/bin/slynk-start-server.lisp
+SLYNK_PID=$!
+echo "SLYNK_PID=${SLYNK_PID}"
+# Ждем завершения процесса Emacs
+
+wait $EMACS_PID
+# После завершения Emacs останавливаем Slynk
+kill $SLYNK_PID
 
