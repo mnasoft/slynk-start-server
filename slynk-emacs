@@ -3,21 +3,25 @@
 
 if [[ `ps | grep /usr/local/bin/sbcl | awk '{print $1}'` ]]
 then
-    echo "emacs; slynk-stop-server"
-    emacs; slynk-stop-server
+    echo "Slynk Is Running"
+    echo "Starting EMACS ..."
+    emacs
 else
-    echo "##################################################"
-    echo "SLYNK SERVER is NOT RUNNING"
-    echo "##################################################"        
-    echo "To start SLYNK SERVER in separate terminal invoke:"
-    echo "slynk-start-server"
-    echo "##################################################"
-    echo "To start EMACS whis SLY invoke one of command:"
-    echo "##################################################"    
-    echo "slynk-emacs                    # when EMACS exiting SLYNK SERVER exiting to;"
-    echo "emacs; slync-stop-server       # when EMACS exiting SLYNK SERVER exiting to;" 
-    echo "emacs                          # when EMACS exiting SLYNK SERVER stay runing."
+    echo "Slynk Is Not Running"
+    echo "Starting EMACS & SLYNK ..." 
+    emacs &
+    slynk-start-server
 fi
+
+#   echo "To start SLYNK SERVER in separate terminal invoke:"
+#   echo "slynk-start-server"
+#   echo "##################################################"
+#   echo "To start EMACS whis SLY invoke one of command:"
+#   echo "##################################################"    
+#   echo "slynk-emacs                    # when EMACS exiting SLYNK SERVER exiting to;"
+#   echo "emacs; slync-stop-server       # when EMACS exiting SLYNK SERVER exiting to;" 
+#   echo "emacs                          # when EMACS exiting SLYNK SERVER stay runing."
+
 
 # emacs; slynk-stop-server
 # slynk-start-server
