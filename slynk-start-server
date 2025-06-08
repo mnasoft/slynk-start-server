@@ -15,7 +15,10 @@ if [ "$1" == "sbcl" ]; then
     start_sbcl
 elif [ "$1" == "ecl" ]; then
     start_ecl
+elif [ "$1" == "all" ]; then
+    start_sbcl
+    start_ecl    
 else
-    echo "Usage: $0 {sbcl|ecl}"
+    echo "Usage: $0 {all|sbcl|ecl}"
     exit 1
 fi
