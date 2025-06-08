@@ -7,7 +7,7 @@ start_sbcl() {
 
 # Function to start ECL server
 start_ecl() {
-    ecl --load /usr/local/bin/slynk-start-server-ecl.lisp
+    ecl --load /usr/local/bin/slynk-start-ecl.lisp
 }
 
 # Check the argument and start the corresponding server
