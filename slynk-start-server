@@ -1,4 +1,21 @@
 #!/bin/bash
-#
-sbcl --dynamic-space-size 16384  --load /usr/local/bin/slynk-start-server.lisp
-# --control-stack-size 8192
+
+# Function to start SBCL server
+start_sbcl() {
+    sbcl --dynamic-space-size 16384 --load /usr/local/bin/slynk-start-sbcl.lisp
+}
+
+# Function to start ECL server
+start_ecl() {
+    ecl --load /usr/local/bin/slynk-start-server-ecl.lisp
+}
+
+# Check the argument and start the corresponding server
+if [ "$1" == "sbcl" ]; then
+    start_sbcl
+elif [ "$1" == "ecl" ]; then
+    start_ecl
+else
+    echo "Usage: $0 {sbcl|ecl}"
+    exit 1
+fi

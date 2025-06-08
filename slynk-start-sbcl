@@ -1,0 +1,4 @@
+#!/bin/bash
+#
+sbcl --dynamic-space-size 16384  --load /usr/local/bin/slynk-start-sbcl.lisp
+# --control-stack-size 8192
