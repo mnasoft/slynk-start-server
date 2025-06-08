@@ -1,3 +1,0 @@
-#!/bin/bash
-
-ecl --load /usr/local/bin/slynk-start-server-ecl.lisp
