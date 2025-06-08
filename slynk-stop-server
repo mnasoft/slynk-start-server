@@ -1,18 +1,20 @@
 #!/bin/bash
-#
-# kill $(ps -a|grep sbcl|awk '{print $1}')
-
-
-#!/bin/bash
 
 # Завершает процессы SBCL и ECL, запущенные как slynk-серверы
 
-echo "Останавливаю slynk-серверы..."
-
-# Завершить SBCL-процессы
-pkill -f "sbcl.*slynk-start-server"
-
-# Завершить ECL-процессы
-pkill -f "ecl.*slynk-start-server-ecl"
+if [ "$1" == "all" ]; then
+    echo "Останавливаю все slynk-серверы..."
+    pkill -f "sbcl.*slynk-start-sbcl"
+    pkill -f "ecl.*slynk-start-ecl"
+elif [ "$1" == "sbcl" ]; then
+    echo "Останавливаю slynk-серверы SBCL..."
+    pkill -f "sbcl.*slynk-start-sbcl"
+elif [ "$1" == "ecl" ]; then
+    echo "Останавливаю slynk-серверы ECL..."
+    pkill -f "ecl.*slynk-start-ecl"
+else
+    echo "Использование: $0 {all|sbcl|ecl}"
+    exit 1
+fi
 
 echo "Готово."
