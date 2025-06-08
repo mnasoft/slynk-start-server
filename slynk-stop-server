@@ -1,3 +1,18 @@
 #!/bin/bash
 #
-kill $(ps -a|grep sbcl|awk '{print $1}')
+# kill $(ps -a|grep sbcl|awk '{print $1}')
+
+
+#!/bin/bash
+
+# Завершает процессы SBCL и ECL, запущенные как slynk-серверы
+
+echo "Останавливаю slynk-серверы..."
+
+# Завершить SBCL-процессы
+pkill -f "sbcl.*slynk-start-server"
+
+# Завершить ECL-процессы
+pkill -f "ecl.*slynk-start-server-ecl"
+
+echo "Готово."
