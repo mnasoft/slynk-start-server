@@ -1,0 +1,13 @@
+#!/bin/bash
+
+SESSION_NAME="HTOP"
+COMMAND="htop"  # Замените на вашу команду
+
+# Проверяем, существует ли уже сессия screen
+if screen -list | grep -q "$SESSION_NAME"; then
+    echo "Сессия $SESSION_NAME уже запущена."
+else
+    # Запускаем новую сессию screen и выполняем команду
+    screen -dmS "$SESSION_NAME" bash -c "$COMMAND"
+    echo "Сессия $SESSION_NAME запущена с командой: $COMMAND"
+fi
