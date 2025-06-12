@@ -2,3 +2,5 @@
 #*
 *.html
 *~
+INSTALL.log
+UNINSTALL.run
