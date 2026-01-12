@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SESSION_NAME="sbcl"
-COMMAND="slynk-start-server sbcl"  # Замените на вашу команду
+SESSION_NAME="SBCL"
+COMMAND="slynk-start-server sbcl"
 
 # Проверяем, существует ли уже сессия screen
 if screen -list | grep -q "$SESSION_NAME"; then
