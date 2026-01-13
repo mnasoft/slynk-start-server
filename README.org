@@ -1,0 +1,92 @@
+* Назначение
+
+Набор простых скриптов для установки и запуска SLYNK (Sly/Swank)
+сервера для Common Lisp (SBCL / ECL), а также вспомогательных
+wrapper-скриптов для запуска в screen и интеграции с Emacs.
+
+* Требования
+
+- Linux / Unix-подобная система
+- Bash
+- SBCL и/или ECL
+- Quicklisp (в домашней директории пользователя)
+- screen
+- emacs (опционально)
+
+* Установка
+
+1. Дать права на запуск и выполнить инсталлятор:
+
+   chmod +x INSTALL.run
+   ./INSTALL.run
+
+   Скрипт копирует исполняемые файлы в `/usr/local/bin/` и формирует
+   `UNINSTALL.run` для удаления.
+
+* Как это работает
+
+- `slynk-start-server sbcl|ecl` — wrapper, который запускает SLYNK
+  через SBCL или ECL. Подгружаемые Lisp-скрипты:
+  + `slynk-start-sbcl.lisp` запускает сервер (порт 4005) и выполняет
+    доп. загрузку (включая `vse-gost/web`).
+  + `slynk-start-ecl.lisp` запускает сервер (порт 4006).
+
+- `slynk-stop-server {all|sbcl|ecl}` — останавливает запущенные
+  slynk-серверы (использует `pkill -f`).
+
+- `slynk-emacs` — проверяет, запущен ли sbcl-сервер; если нет,
+  запускает SLYNK и Emacs.
+
+- `screen-sbcl` и `screen-htop` — простые обёртки для запуска
+  SBCL/htop в отдельной сессии `screen`.
+
+* Примеры запуска
+
+- Запуск SLYNK через SBCL в текущем терминале:
+
+  slynk-start-server sbcl
+
+- Запуск в `screen` через wrapper:
+
+  screen-sbcl
+
+- Остановка всех slynk-серверов:
+
+  slynk-stop-server all
+
+* Удаление
+
+- Выполнить:
+
+  chmod +x UNINSTALL.run
+  ./UNINSTALL.run
+
+  Это удалит скопированные в `/usr/local/bin/` файлы.
+
+* Содержимое репозитория (важные файлы)
+
+- INSTALL.run — установщик, копирует скрипты в `/usr/local/bin/`.
+- UNINSTALL.run — генерируемый скрипт для удаления установленных
+  файлов.
+- slynk-start-server — wrapper для выбора SBCL/ECL и запуска
+  соответствующего Lisp-скрипта.
+- slynk-start-sbcl.lisp — Lisp-скрипт для SBCL (порт 4005).
+- slynk-start-ecl.lisp — Lisp-скрипт для ECL (порт 4006).
+- slynk-stop-server — скрипт для остановки серверов.
+- slynk-emacs — helper для запуска Emacs + slynk.
+- screen-sbcl, screen-htop — обёртки для `screen`.
+- org/README.org — заметки (существующий файл с заголовками).
+
+* Примечания и рекомендации
+
+- Убедитесь, что Quicklisp установлен в домашней директории
+  пользователя (скрипты ожидают `quicklisp/setup.lisp`).
+- Порты по умолчанию: `4005` (SBCL), `4006` (ECL).
+- Скрипты предполагают, что они будут скопированы в `/usr/local/bin/`
+  (через `INSTALL.run`).
+
+* Дальше
+
+Если хотите, могу:
+- добавить примеры конфигурации Emacs для подключения к SLYNK;
+- обновить `org/README.org` или синхронизировать его с новым `README.org`.
